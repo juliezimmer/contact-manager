@@ -25,7 +25,16 @@ class Contacts extends Component {
          }
       ]
    }
-  
+
+   deleteContact = (id) => {
+      const { contacts } = this.state;
+
+      const newContacts = contacts.filter(contact => contact.id !== id);
+
+      this.setState({
+         contacts: newContacts
+      })
+   }
    
    render() {
       // destructuring the state object
@@ -37,7 +46,7 @@ class Contacts extends Component {
                <Contact 
                   key={contact.id}
                   contact={contact} // this is the entire contact object from the contacts array in the state object
-                  
+                  deleteClickHandler={this.deleteContact.bind(this, contact.id)}
                />
             ))}
          </React.Fragment>
